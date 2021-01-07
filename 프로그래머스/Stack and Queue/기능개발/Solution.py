@@ -20,7 +20,7 @@ def solution(progresses, speeds):
 def solution(progresses, speeds):
     Q=[]
     for p, s in zip(progresses, speeds):
-        if len(Q)==0 or Q[-1][0]<-((p-100)//s):
+        if len(Q)==0 or Q[-1][0]<-((p-100)//s): #ceil()을 안스려고 p-100으로 작성
             Q.append([-((p-100)//s),1])
         else:
             Q[-1][1]+=1
