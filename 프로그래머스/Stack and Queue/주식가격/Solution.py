@@ -21,18 +21,17 @@ def solution(prices):
 
 #2차 
 def solution(prices):
-    p_return=[]
-
+    answer = [] 
     for i in range(0,len(prices)):
-        cut=0
+        do=0
         for j in range(i+1,len(prices)):
-            if prices[i] > prices[j]:
-                p_return.append(j-i)
-                cut=1
+            if prices[i]>prices[j]:
+                answer.append(j-i)
+                do=1
                 break
-        if cut==0:
-            p_return.append(j-i)
-    return p_return
+        if do==0:
+            answer.append(j-i)
+    return answer
 
 
 #queue사용
