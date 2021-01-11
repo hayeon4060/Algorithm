@@ -1,4 +1,4 @@
-#1차 (부분 통과)
+#1차 (부분 통과) ->min과 max
 def solution(scoville, K):
     answer = 0
     low=[]
@@ -22,7 +22,7 @@ def solution(scoville, K):
             break
     return answer
 
-#2차 부분 실패(런타임 에러)
+#2차 부분 실패(런타임 에러) ->min과 다음min
 def solution(scoville, K):
     answer = 0
     low=[]
@@ -32,6 +32,20 @@ def solution(scoville, K):
     while low:
         low.sort()
         i+=1
+        j=i+1
+        if low[i]>=K:
+            break
+        answer+=1
+        low[j]=low[i]+low[j]*2
+        
+    return answer
+
+#3차 부분실패(런타임 에러) 2에서 while->for 길이 줄임
+def solution(scoville, K):
+    answer = 0
+    low=list(filter(lambda x: x<K,scoville))
+    for i in range(0,len(low)):
+        low.sort()
         j=i+1
         if low[i]>=K:
             break
