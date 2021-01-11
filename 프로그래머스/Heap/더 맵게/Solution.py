@@ -1,4 +1,4 @@
-#1차 
+#1차 (부분 통과)
 def solution(scoville, K):
     answer = 0
     low=[]
@@ -22,7 +22,7 @@ def solution(scoville, K):
             break
     return answer
 
-#2차
+#2차 부분 실패(런타임 에러)
 def solution(scoville, K):
     answer = 0
     low=[]
