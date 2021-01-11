@@ -2,12 +2,6 @@
 def solution(scoville, K):
     answer = 0
     low=[]
-#    for i in range(0, len(scoville)):
-#        if K>scoville[i]:
-#            low.append(scoville[i])
-#        else:
-#            break
-    #map(lambda x: low.append(X) if x<k else break, scoville )
     low=list(filter(lambda x: x<K,scoville))
     i=0
     j=len(low)-1
@@ -26,4 +20,22 @@ def solution(scoville, K):
         else:
             answer-=1
             break
+    return answer
+
+#2차
+def solution(scoville, K):
+    answer = 0
+    low=[]
+    low=list(filter(lambda x: x<K,scoville))
+    
+    i=-1
+    while low:
+        low.sort()
+        i+=1
+        j=i+1
+        if low[i]>=K:
+            break
+        answer+=1
+        low[j]=low[i]+low[j]*2
+        
     return answer
