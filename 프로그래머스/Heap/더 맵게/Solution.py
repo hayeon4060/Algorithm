@@ -53,3 +53,17 @@ def solution(scoville, K):
         low[j]=low[i]+low[j]*2
         
     return answer
+
+#
+def solution(scoville, K):
+    import heapq
+    cnt=0
+    heapq.heapify(scoville)
+    
+    while scoville[0]<K:
+        try:
+            heapq.heappush(scoville, heapq.heappop(scoville)+heapq.heappop(scoville)*2)
+            cnt+=1
+        except IndexError:
+            return -1
+    return cnt
