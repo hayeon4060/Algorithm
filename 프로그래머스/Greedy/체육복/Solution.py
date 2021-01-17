@@ -32,7 +32,7 @@ def solution(n, lost, reserve):
             if tmp[i]==-1:
                 no+=1
             break
-        elif tmp[i]!=0:
+        if tmp[i]!=0:
             if tmp[i]+tmp[j]==0:
                 i+=2
             elif tmp[i]+tmp[j]<0:
@@ -40,7 +40,6 @@ def solution(n, lost, reserve):
                 no+=1
             else:
                 i+=1
-        
-            
-        
+        else:
+            i+=1
     return n-no
