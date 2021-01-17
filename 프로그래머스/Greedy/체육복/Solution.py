@@ -12,3 +12,28 @@ def solution(n, lost, reserve):
         avail=len(answer)
     return n-len(lost)+avail
     #return n-len(reserve)+len(answer_set)
+    
+    
+    
+#2차
+def solution(n, lost, reserve):
+
+    tmp=[0 for i in range(n+1)]
+    for i in reserve:
+        tmp[i]=1
+    for i in lost:
+        tmp[i]=-1
+    i=1
+    no=0
+    
+    while i<=n :
+        print(i, n)
+        j=i+1
+        if i==n:
+            if tmp[i]==-1:
+                no+=1
+            break
+        i+=1
+            
+        
+    return n-no
