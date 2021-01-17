@@ -25,15 +25,22 @@ def solution(n, lost, reserve):
         tmp[i]=-1
     i=1
     no=0
-    
+    print(tmp)
     while i<=n :
-        print(i, n)
         j=i+1
         if i==n:
             if tmp[i]==-1:
                 no+=1
             break
-        i+=1
+        elif tmp[i]!=0:
+            if tmp[i]+tmp[j]==0:
+                i+=2
+            elif tmp[i]+tmp[j]<0:
+                i+=1
+                no+=1
+            else:
+                i+=1
+        
             
         
     return n-no
