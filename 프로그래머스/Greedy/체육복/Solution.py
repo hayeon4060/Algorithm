@@ -25,7 +25,6 @@ def solution(n, lost, reserve):
         tmp[i]=-1
     i=1
     no=0
-    print(tmp)
     while i<=n :
         j=i+1
         if i==n:
@@ -55,7 +54,6 @@ def solution(n, lost, reserve):
         tmp[i]-=1
     i=1
     no=0
-    print(tmp)
     while i<=n :
         j=i+1
         if i==n:
