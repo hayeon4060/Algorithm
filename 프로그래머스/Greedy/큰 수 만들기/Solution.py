@@ -1,3 +1,4 @@
+#1차 number가 배열이 아니였음..
 def solution(number, k):
     answer = ''
     tmp=[]
