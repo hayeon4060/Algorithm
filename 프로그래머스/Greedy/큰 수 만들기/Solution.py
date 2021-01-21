@@ -1,26 +1,4 @@
-#1차 number가 배열이 아니였음..
-def solution(number, k):
-    answer = ''
-    tmp=[]
-    tmp.append(0)
-    k+=1
-    j=0
-    for i in range(len(number)):
-        if number[i]>tmp[j] and k>0:
-            tmp[j]=number[i]
-            k-=1
-        elif number[i]<=tmp[j]:
-            tmp.append(number[i])
-            j+=1
-        if k==0:
-            for a in range(i, len(number)):
-                tmp.append(number[a])
-            break
-            
-    print(tmp)
-    
-    return answer
-#2차 테스트 1문제 틀림
+#나의 풀이
 def solution(number, k):
     answer = ''
     number=list(map(lambda x: int(x), list(number)))
@@ -44,5 +22,19 @@ def solution(number, k):
             for a in range(i, len(number)):
                 tmp.append(number[a])
             break
-
+    while k>0:
+        tmp.pop()
+        k-=1
     return "".join(map(str, tmp))
+
+#다른 사람 풀이
+def solution(number, k):
+    stack = [number[0]]
+    for num in number[1:]:
+        while len(stack) > 0 and stack[-1] < num and k > 0:
+            k -= 1
+            stack.pop()
+        stack.append(num)
+    if k != 0:
+        stack = stack[:-k]
+    return ''.join(stack)
