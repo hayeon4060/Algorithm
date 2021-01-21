@@ -33,7 +33,7 @@ def solution(number, k):
 def solution(number, k):
     st = []
     for i in range(len(number)):
-        while st and k > 0 and st[-1] < number[i]:
+        while st and k > 0 and st[-1] < number[i]:     #st[-1]은 마지막 값을 제거하지 않고 가져오기만 함
             st.pop()
             k -= 1
         st.append(number[i])
