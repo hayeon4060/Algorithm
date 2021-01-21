@@ -27,6 +27,20 @@ def solution(number, k):
         k-=1
     return "".join(map(str, tmp))
 
+
+
+#다른 사람 풀이1
+def solution(number, k):
+    st = []
+    for i in range(len(number)):
+        while st and k > 0 and st[-1] < number[i]:
+            st.pop()
+            k -= 1
+        st.append(number[i])
+    return ''.join(st[:len(st) - k])
+
+
+
 #다른 사람 풀이
 def solution(number, k):
     stack = [number[0]]
