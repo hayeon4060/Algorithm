@@ -22,7 +22,7 @@ def solution(number, k):
             for a in range(i, len(number)):
                 tmp.append(number[a])
             break
-    while k>0:
+    while k>0: #111119 일때 k=3 ==> 
         tmp.pop()
         k-=1
     return "".join(map(str, tmp))
