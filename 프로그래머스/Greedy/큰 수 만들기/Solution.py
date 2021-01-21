@@ -20,7 +20,7 @@ def solution(number, k):
     print(tmp)
     
     return answer
-#2차 테스트 3번에서 
+#2차 테스트 1문제 틀림
 def solution(number, k):
     answer = ''
     number=list(map(lambda x: int(x), list(number)))
@@ -29,10 +29,14 @@ def solution(number, k):
     k+=1
     j=0
     for i in range(len(number)):
-        print(i)
         if number[i]>tmp[j] and k>0:
             tmp[j]=number[i]
             k-=1
+            while number[i]>tmp[j-1] and k>0:
+                j-=1
+                tmp[j]=number[i]
+                k-=1
+                tmp.pop()
         elif number[i]<=tmp[j]:
             tmp.append(number[i])
             j+=1
@@ -40,7 +44,5 @@ def solution(number, k):
             for a in range(i, len(number)):
                 tmp.append(number[a])
             break
-        print(tmp, k, i)
 
-    
-    return answer
+    return "".join(map(str, tmp))
