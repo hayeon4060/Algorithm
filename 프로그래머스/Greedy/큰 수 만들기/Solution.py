@@ -41,7 +41,7 @@ def solution(number, k):
 
 
 
-#다른 사람 풀이
+#다른 사람 풀이2
 def solution(number, k):
     stack = [number[0]]
     for num in number[1:]:
