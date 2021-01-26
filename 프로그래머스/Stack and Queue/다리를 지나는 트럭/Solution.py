@@ -1,4 +1,4 @@
-#나의 풀이
+#나의 풀이..공부하자 하연아.
 
 def solution(bridge_length, weight, truck_weights):
     answer = 0
