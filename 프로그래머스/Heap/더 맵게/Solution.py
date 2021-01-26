@@ -54,7 +54,7 @@ def solution(scoville, K):
         
     return answer
 
-#
+#다른사람 
 def solution(scoville, K):
     import heapq
     cnt=0
