@@ -1,3 +1,4 @@
+#1차시도 
 from itertools import permutations
 def solution(numbers):
     answer = 0
