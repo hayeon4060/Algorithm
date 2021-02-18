@@ -13,7 +13,7 @@ def solution(numbers):
             answer+=1
     return answer
     
-def prime(a):
+def prime(a): #
     if a<=1:
         return False
     for i in range(2, a):
