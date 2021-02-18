@@ -13,9 +13,11 @@ def solution(numbers):
             answer+=1
     return answer
     
-def prime(a): #소수 
+def prime(a):
     if a<=1:
         return False
+    elif a==2:
+        return True
     for i in range(2, a):
         if a%i==0:
             return False
