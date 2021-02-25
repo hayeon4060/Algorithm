@@ -22,3 +22,32 @@ def prime(a):
         if a%i==0:
             return False
         else: return True
+
+
+
+
+#2차 시도
+from itertools import permutations
+import math
+def solution(numbers):
+    answer = 0
+    lst=[]
+    for i in range(1, len(numbers)+1):
+        lst+=list(permutations(list(numbers),i))
+    for i in range(len(lst)):
+        lst[i]=int("".join(lst[i]))
+    lst=list(set(lst))
+    for i in lst:
+        if prime(i):
+            answer+=1
+    return answer
+
+def prime(n):
+    k = math.sqrt(n)
+    if n < 2: 
+        return False
+
+    for i in range(2, int(k)+1):
+        if n % i == 0:
+            return False
+    return True
