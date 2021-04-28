@@ -9,7 +9,10 @@
 
 
 # Definition for singly-linked list.
+import collections
 from collections import deque
+# from typing import Deque
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -18,7 +21,8 @@ class ListNode:
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
         
-        q: Deque = collections.deque()        
+        q: deque = deque()
+        # q: Deque = collections.deque()
        
         
         
