@@ -17,13 +17,17 @@ class Solution:
     def sortList(self, head: ListNode) -> ListNode:
         if not (head and head.next):
             return head
-        #런너 기법 활용
+        #런너 기법 활용: 연결리스트 순회 시 2개 포인터 동시에 사용하는 기법
         half, slow, fast = None, head, head
         while fast and fast.next:
-            half, slow, fast = slow, slow.next, fast.next.next
-        half.next = None
+            half, slow, fast = slow, slow.next, fast.next.next 
+            # slow 한번 움직일떄 fast는 두번-> half는 가운데 노드로 정해짐
+        half.next = None # 중앙을 기준으로 끊어버림
         #런너 기법 활용
-        l1 = self.sortList(head)
-        l2 = self.sortList(slow)
+        l1 = self.sortList(head) # 0 ~ half
+        l2 = self.sortList(slow) # slow ~ 끝 (slow는 half.next)
 
         return self.mergeTwoLists(l1, l2)
+    
+    
+    
