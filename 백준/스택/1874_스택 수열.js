@@ -1,3 +1,7 @@
+//첫번째 값은 big_num. 1부터 big_num까지 숫자들을 순서대로 push.
+// 이후 나머지 숫자의 배열을 만들어야함. 
+
+
 let input = require("fs").readFileSync("../example.txt").toString().split("\n");
 // const input = require("fs").readFileSync("/dev/stdin").toString().split("\n");
 
@@ -31,3 +35,7 @@ if(tmp.length === big_num){
 }else{
     console.log("NO")
 }
+
+
+// 배열의 값을 출력할때 
+// console.log(giho.join('\n') ) 사용 
