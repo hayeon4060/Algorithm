@@ -5,37 +5,39 @@ const line = input[0]
 
 let queue = []
 let start = 0
-let last = 0
+let answer = []
 
 for(let i=1; i<=line; i++){
     let cmd = input[i].trim().split(" ")
+    // console.log(queue, cmd[0], cmd[1])
 
     switch(cmd[0]){
         case 'push':
             queue.push(cmd[1]);
-            last++
             break;
 
         case 'pop':
-            if(start > last)
-            queue.push(cmd[1]);
+            if(queue.length == start){answer.push(-1)}
+            else{answer.push(queue[start++])}
             break;
             
         case 'size':
-            console.log(last-start)
+            answer.push(queue.length - start)
             break;
             
         case 'empty':
-            queue.push(cmd[1]);
+            answer.push(queue.length ==start ? 1 : 0)
             break;
             
         case 'front':
-            queue.push(cmd[1]);
+            answer.push(queue.length ==start ? -1 : queue[start]);
             break;
             
         case 'back':
-            queue.push(cmd[1]);
+            answer.push(queue.length ==start ? -1 : queue[queue.length-1]);
             break;
     }
 
 }
+// console.log(answer)
+console.log(answer.join("\n"))
