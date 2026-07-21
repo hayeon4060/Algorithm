@@ -1,6 +1,6 @@
 const input = require("fs").readFileSync("./example.txt").toString().split("\n");
 
-let num =Number(input.shift(0))
+let num =Number(input.shift())
 
 let spot = input.map(x=>{return x.trim().split(" ").map(Number)})
 console.log(spot)
@@ -8,16 +8,14 @@ let cost = Array.from({length:num}, ()=>{
         return Array.from({length:num}, ()=>{return 0})
     })
 
-    console.log(cost)
+    // console.log(cost)
 
 for(let idx in spot){
     let [x,y] = spot[idx]
-    console.log(idx, "----",x,y)
+    // console.log(idx, "----",x,y)
     
     for(let i = Number(idx)+1; i<num; i++){
-        console.log(i, spot[i])
-        let val = Math.sqrt(Math.abs(spot[i][0] - x)^2 +Math.abs(spot[i][1] - y)^2 )
-        console.log(val)
+        let val = Math.sqrt(Math.abs(spot[i][0] - x)**2 + Math.abs(spot[i][1] - y)** 2)
 
         cost[idx][i] = val
         cost[i][idx] = val
@@ -29,22 +27,41 @@ for(let idx in spot){
 // 5 3
 // 3 1
 // 3 3
-console.log(cost)
 // 정답: 9.656854249
 
 
 
-function dp(fr, lst){
+function dfs(fr, lst){
+    console.log(fr, lst)
+    
     // lst : {0:1, 1:3} fr:to 
     let vals = Object.values(lst)
-    let rs = Infinity
+    console.log(vals, num)
     
-    if(fr == 0){continue}
-    if(vals.length == num) { continue}
+    if(vals.length == num -1) { return cost[fr][0]}
+
+    let now_val = Infinity
+    for(let i = 0; i<num; i++){
+
+        if(vals.includes(i)){continue}
+        if(i==0){continue}
+        if(fr == i) {continue}
+
+        let tmp_lst = JSON.parse(JSON.stringify(lst))
+        tmp_lst[fr]=i
+        let tmp_rs = dfs(i, tmp_lst)
+
+        if(now_val > tmp_rs+ cost[fr][i]){
+            now_val = tmp_rs+ cost[fr][i]
+        }
+    }
+    console.log("------------------")
+    console.log(lst, fr, now_val)
+    console.log(lst)
 
 
-
-    return rs 
+    if(tmp_to == -1){return 0}
+    return now_val 
 }
 
-console.log(dp(0, {}))
+console.log(dfs(0, {}))
