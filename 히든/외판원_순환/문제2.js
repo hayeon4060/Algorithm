@@ -3,7 +3,6 @@ const input = require("fs").readFileSync("./example.txt").toString().split("\n")
 let num =Number(input.shift())
 
 let spot = input.map(x=>{return x.trim().split(" ").map(Number)})
-console.log(spot)
 let cost = Array.from({length:num}, ()=>{
         return Array.from({length:num}, ()=>{return 0})
     })
@@ -29,25 +28,28 @@ for(let idx in spot){
 // 3 3
 // 정답: 9.656854249
 
-
+let memo = Array.from({length : num}, ()=>{return {}})
 
 function dfs(fr, lst){
-    console.log(fr, lst)
+
+    let keys = Object.keys(lst).join()
+    let memo_val = memo[fr][keys]
+    if(memo_val != undefined){return memo_val}
     
     // lst : {0:1, 1:3} fr:to 
     let vals = Object.values(lst)
-    console.log(vals, num)
     
     if(vals.length == num -1) { return cost[fr][0]}
 
     let now_val = Infinity
     for(let i = 0; i<num; i++){
 
-        if(vals.includes(i)){continue}
+        if(i == fr || lst[i] !=undefined){continue}
         if(i==0){continue}
         if(fr == i) {continue}
 
-        let tmp_lst = JSON.parse(JSON.stringify(lst))
+        // let tmp_lst = JSON.parse(JSON.stringify(lst))
+        let tmp_lst = { ...lst}
         tmp_lst[fr]=i
         let tmp_rs = dfs(i, tmp_lst)
 
@@ -55,12 +57,9 @@ function dfs(fr, lst){
             now_val = tmp_rs+ cost[fr][i]
         }
     }
-    console.log("------------------")
-    console.log(lst, fr, now_val)
-    console.log(lst)
+    
 
-
-    if(tmp_to == -1){return 0}
+    memo[fr][keys] = now_val
     return now_val 
 }
 

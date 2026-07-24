@@ -38,24 +38,46 @@
 const input = require("fs").readFileSync("./example.txt").toString().split("\n");
 
 let num =Number(input.shift(0))
-
 let cost = input.map(x=>{return x.trim().split(" ").map(Number)})
+
 console.log(cost)
 
 // 0   10* 15  20
 // 5   0   9   10*
 // 6*  13  0   12
 // 8   8   9*   0
+let memo = Array.from({length: num}, ()=>{return {}})
 
-function df(from, lst){
+function dfs(from, lst){
 
     // lst = {0:1, 1:3}
-    // lst = ['i_j', 'i_j']
+    let memo_key = Object.keys(lst)
     
+    let memo_val = memo[from][memo_key.join()]
+    if(memo_val != undefined){return memo_val}
+    let visited = Object.values(lst)
+    if(visited.length == num -1 ){return  cost[from][0] == 0 ? Infinity :cost[from][0] }
 
+    let now_val = Infinity
+
+    for(let to=1; to<num; to++){
+        if(visited.includes(to)){continue}
+        
+        if(cost[from][to] ==0){continue}
+        // let tmp_lst = JSON.parse(JSON.stringify(lst))
+        let tmp_lst = {...lst}
+
+
+        tmp_lst[from] = to
+        let tmp_val = cost[from][to] + dfs(to, tmp_lst)
+        if(tmp_val < now_val){now_val = tmp_val}
+    }
+    memo[from][memo_key.join()] = now_val
+    return now_val
 
 }
-df(0, {})
+let rs = dfs(0, {}) 
+console.log(rs == Infinity ? -1 : rs )
 
 
 // 예시
